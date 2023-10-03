@@ -1,0 +1,22 @@
+-- Tạo bảng users
+CREATE TABLE users (
+    username VARCHAR(50) NOT NULL PRIMARY KEY,
+    password VARCHAR(50) NOT NULL,
+    enabled TINYINT NOT NULL
+);
+
+-- Thêm người dùng vào bảng users
+INSERT INTO users (username, password, enabled) VALUES ('join', '{noop}test123', 1);
+INSERT INTO users (username, password, enabled) VALUES ('mary', '{noop}test123', 1);
+
+-- Tạo bảng roles để quản lý vai trò của người dùng
+CREATE TABLE authorities (
+    username VARCHAR(50) NOT NULL,
+    authority VARCHAR(50) NOT NULL,
+    UNIQUE KEY authorities_idx_1 (username, authority),
+    FOREIGN KEY (username) REFERENCES users (username)
+);
+
+-- Thêm các vai trò vào bảng roles
+INSERT INTO authorities (username,authority) VALUES ('join', 'ROLE_EMPLOYEE');
+INSERT INTO authorities (username, authority) VALUES ('mary', 'ROLE_ADMIN');

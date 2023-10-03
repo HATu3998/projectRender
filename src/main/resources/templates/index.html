@@ -1,10 +1,24 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
 <h1>day la index</h1>
+<div sec:authorize="hasRole('ADMIN')">
+<p>
+<a th:href="@{/leaders}">leadership meeting</a>
+</p>
+</div>
+
+<p>User:<span sec:authentication="principal.username"></span> <br><br>
+Roles: <span sec:authentication="principal.authorities"></span> </p>
+
+
+<form action="#" th:action="@{/logout}" method="POST">
+<input type="submit" name="logout" value="login"/>
+</form>
 </body>
 </html>

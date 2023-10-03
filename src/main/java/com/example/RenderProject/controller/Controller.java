@@ -13,4 +13,14 @@ public class Controller {
 	public String login() {
 		return "login";
 	}
+	
+	@GetMapping("/leaders")
+	public String showLeader() {
+		return "leaders";
+	}
+	
+	@GetMapping("/errorLogin")
+	public String errorLogin() {
+		return "/errorLogin";
+	}
 }
