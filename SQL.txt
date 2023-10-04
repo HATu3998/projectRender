@@ -20,3 +20,22 @@ CREATE TABLE authorities (
 -- Thêm các vai trò vào bảng roles
 INSERT INTO authorities (username,authority) VALUES ('join', 'ROLE_EMPLOYEE');
 INSERT INTO authorities (username, authority) VALUES ('mary', 'ROLE_ADMIN');
+
+CREATE TABLE products (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    catagory varchar(255) not null,
+    price DECIMAL(10, 2) NOT NULL,
+    image_url VARCHAR(255)
+);
+Insert into products(name,catagory,price,image_url) values ('Quần Kaki Nam Cạp Chun Dáng Rộng Phối Túi Thời Trang Zenkocs3 MEN QUAN 049','quan',150,'https://ibb.co/bvm6t78');
+Insert into products(name,catagory,price,image_url) values ('Áo polo nam nữ local brand unisex Fearow Signature','ao',50,'https://ibb.co/LdgRZ4M');
+CREATE TABLE cart (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(50) NOT NULL,
+    product_id INT NOT NULL,
+    quantity INT NOT NULL,
+    FOREIGN KEY (username) REFERENCES users (username),
+    FOREIGN KEY (product_id) REFERENCES products (id)
+);
+
