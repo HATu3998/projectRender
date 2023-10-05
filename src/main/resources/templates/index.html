@@ -6,7 +6,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>day la index</h1>
+
 <div sec:authorize="hasRole('ADMIN')">
 <p>
 <a th:href="@{/leaders}">leadership meeting</a>
@@ -20,5 +20,33 @@ Roles: <span sec:authentication="principal.authorities"></span> </p>
 <form action="#" th:action="@{/logout}" method="POST">
 <input type="submit" name="logout" value="login"/>
 </form>
+ <h1>Danh sách sản phẩm</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Tên</th>
+                <th>Giá</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="product : ${products}">
+       
+                <td th:text="${product.id}"></td>
+                <td th:text="${product.name}"></td>
+                <td th:text="${product.price}"></td>
+                <td><img th:src="${product.imageUrl}"></td>
+               <td>
+    <form th:action="@{/api/cart/add}" method="post">
+        <input type="text" name="productId" th:value="${product.id}" />
+        <input type="hidden" name="quantity" value="1" />
+      <input type="text" name="username" th:value="${usernamePrin}" />
+        <input type="text" name="price" th:value="${product.price}" />
+        <button type="submit">Mua</button>
+    </form>
+</td>
+            </tr>
+        </tbody>
+    </table>
 </body>
 </html>

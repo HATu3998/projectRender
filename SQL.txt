@@ -28,14 +28,26 @@ CREATE TABLE products (
     price DECIMAL(10, 2) NOT NULL,
     image_url VARCHAR(255)
 );
-Insert into products(name,catagory,price,image_url) values ('Quần Kaki Nam Cạp Chun Dáng Rộng Phối Túi Thời Trang Zenkocs3 MEN QUAN 049','quan',150,'https://ibb.co/bvm6t78');
-Insert into products(name,catagory,price,image_url) values ('Áo polo nam nữ local brand unisex Fearow Signature','ao',50,'https://ibb.co/LdgRZ4M');
+Insert into products(name,catagory,price,image_url) values ('Quần Kaki Nam Cạp Chun Dáng Rộng Phối Túi Thời Trang Zenkocs3 MEN QUAN 049','quan',150,'https://imgtr.ee/images/2023/10/05/ca41a824f3b912af190044778cf67639.jpeg');
+Insert into products(name,catagory,price,image_url) values ('Áo polo nam nữ local brand unisex Fearow Signature','ao',50,'https://imgtr.ee/images/2023/10/05/c02e496e2752f868fce0a3cdb3c85ec7.jpeg');
 CREATE TABLE cart (
     id INT AUTO_INCREMENT PRIMARY KEY,
     username VARCHAR(50) NOT NULL,
     product_id INT NOT NULL,
-    quantity INT NOT NULL,
+    total_price DECIMAL(10, 2) NOT NULL,
     FOREIGN KEY (username) REFERENCES users (username),
     FOREIGN KEY (product_id) REFERENCES products (id)
 );
 
+CREATE TABLE discount_codes (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    code VARCHAR(255) NOT NULL,
+    discount_percent DECIMAL(5, 2) NOT NULL,
+    valid_from DATE NOT NULL,
+    valid_to DATE NOT NULL
+);
+INSERT INTO discount_codes (code, discount_percent, valid_from, valid_to)
+VALUES ('DISCOUNT10', 10.00, '2023-01-01', '2023-12-31');
+
+INSERT INTO discount_codes (code, discount_percent, valid_from, valid_to)
+VALUES ('DISCOUNT20', 20.00, '2023-01-01', '2023-12-31');

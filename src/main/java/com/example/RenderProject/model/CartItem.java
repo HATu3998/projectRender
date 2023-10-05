@@ -1,5 +1,7 @@
 package com.example.RenderProject.model;
 
+import java.math.BigDecimal;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -22,24 +24,38 @@ public class CartItem {
     private Product product;
 
     private int quantity;
+    
+    private BigDecimal total_price;
 
-	public CartItem(String username, Product product, int quantity) {
+
+
+	public CartItem(String username, Product product, int quantity, BigDecimal total_price) {
 		super();
 		this.username = username;
 		this.product = product;
 		this.quantity = quantity;
+		this.total_price = total_price;
 	}
 
-	public CartItem(Long id, String username, Product product, int quantity) {
+	public CartItem(Long id, String username, Product product, int quantity, BigDecimal total_price) {
 		super();
 		this.id = id;
 		this.username = username;
 		this.product = product;
 		this.quantity = quantity;
+		this.total_price = total_price;
 	}
 
 	public CartItem() {
 		super();
+	}
+
+	public BigDecimal getTotal_price() {
+		return total_price;
+	}
+
+	public void setTotal_price(BigDecimal total_price) {
+		this.total_price = total_price;
 	}
 
 	public Long getId() {
