@@ -16,7 +16,22 @@ import org.springframework.ui.Model;
 public class Controller {
     @Autowired
     private ProductRepository productRepository;
-    
+    @GetMapping("/product")
+    public String product(Model model, Principal principal) {
+        List<Product> topProducts = productRepository.findByProductTop(true);
+        List<Product> regularProducts = productRepository.findAll();
+        
+        model.addAttribute("topProducts", topProducts);
+        model.addAttribute("regularProducts", regularProducts);
+
+        if (principal != null) {
+            model.addAttribute("usernamePrin", principal.getName());
+        } else {
+            model.addAttribute("usernamePrin", "");
+        }
+        
+        return "product";
+    }
 	@GetMapping("/")
 	public String index(Model model ,Principal principal) {
 		 List<Product> products = productRepository.findAll();

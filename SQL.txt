@@ -25,11 +25,17 @@ CREATE TABLE products (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
     catagory varchar(255) not null,
+    price_first DECIMAL(10, 2) NOT NULL,
     price DECIMAL(10, 2) NOT NULL,
-    image_url VARCHAR(255)
+    image_url VARCHAR(255),
+    image_url_se VARCHAR(255),
+    product_top TINYINT NOT NULL
 );
-Insert into products(name,catagory,price,image_url) values ('Quần Kaki Nam Cạp Chun Dáng Rộng Phối Túi Thời Trang Zenkocs3 MEN QUAN 049','quan',150,'https://imgtr.ee/images/2023/10/05/ca41a824f3b912af190044778cf67639.jpeg');
-Insert into products(name,catagory,price,image_url) values ('Áo polo nam nữ local brand unisex Fearow Signature','ao',50,'https://imgtr.ee/images/2023/10/05/c02e496e2752f868fce0a3cdb3c85ec7.jpeg');
+Insert into products(name,catagory,price_first,price,image_url,product_top) values ('Quần Kaki Nam Cạp Chun Dáng Rộng Phối Túi Thời Trang Zenkocs3 MEN QUAN 049','quan',300,150,'https://imgtr.ee/images/2023/10/05/ca41a824f3b912af190044778cf67639.jpeg',0);
+Insert into products(name,catagory,price_first,price,image_url,product_top) values ('Áo polo nam nữ local brand unisex Fearow Signature','ao',100,50,'https://imgtr.ee/images/2023/10/05/c02e496e2752f868fce0a3cdb3c85ec7.jpeg',0);
+Insert into products(name,catagory,price_first,price,image_url,image_url_se,product_top) values ('Tee basic ss1 CREWZ áo thun tay lỡ unisex Local Brand - AO_THUN_DVR ','ao',200,100,'https://imgtr.ee/images/2023/10/08/fee2ead15893a9a9df67fe39fcb087bb.jpeg','https://imgtr.ee/images/2023/10/08/a3f4038aea579c4f98753e37bca023be.jpeg',1);
+
+
 CREATE TABLE cart (
     id INT AUTO_INCREMENT PRIMARY KEY,
     username VARCHAR(50) NOT NULL,

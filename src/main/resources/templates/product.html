@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+<link rel="stylesheet" type="text/css" href="/static/css/product.css">
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+</head>
+<body>
+
+
+<div class="container">
+    <h3 class="h3">shopping Demo-2 </h3>
+    <div class="row">
+        <div class="col-md-3 col-sm-6" th:each="product : ${topProducts}">
+            <div class="product-grid2">
+                <div class="product-image2">
+                    <a href="#">
+                        <img class="pic-1" th:src="${product.imageUrl}">
+                        <img class="pic-2" th:src="${product.imageUrlSe}">
+                    </a>
+                    <ul class="social">
+                        <li><a href="#" data-tip="Quick View"><i class="fa fa-eye"></i></a></li>
+                      
+                         <li>
+                            <form th:action="@{/api/cart/add}" method="post">
+                                <input type="hidden" name="productId" th:value="${product.id}" />
+                                <input type="hidden" name="quantity" value="1" />
+                                <input type="hidden" name="username" th:value="${usernamePrin}" />
+                                <input type="hidden" name="price" th:value="${product.price}" />
+                                <button type="submit" data-tip="Add to Cart"><i class="fa fa-shopping-cart"></i></button>
+                            </form>
+                        </li>
+                    </ul>
+                 
+                </div>
+                <div class="product-content">
+                    <h3 class="title"><a href="#" th:text="${product.name}"></a></h3>
+                   <div class="price">
+                    <span class="strikethrough" th:text="${product.priceFirst}"></span>
+                      <p th:text="${product.price}"></p>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+<hr>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+<div class="container">
+    <h3 class="h3">shopping</h3>
+    <div class="row">
+        <div class="col-md-3 col-sm-6" th:each="product : ${regularProducts}">
+            <div class="product-grid">
+                <div class="product-image">
+                    <a href="#">
+                        <img class="pic-1" th:src="${product.imageUrl}" />
+                        <img class="pic-2" th:src="${product.imageUrlSe}" />
+                    </a>
+                    <ul class="social">
+                        <li><a href="" data-tip="Quick View"><i class="fa fa-search"></i></a></li>
+                        <li>
+                            <form th:action="@{/api/cart/add}" method="post">
+                                <input type="hidden" name="productId" th:value="${product.id}" />
+                                <input type="hidden" name="quantity" value="1" />
+                                <input type="hidden" name="username" th:value="${usernamePrin}" />
+                                <input type="hidden" name="price" th:value="${product.price}" />
+                                <button type="submit" data-tip="Add to Cart"><i class="fa fa-shopping-cart"></i></button>
+                            </form>
+                        </li>
+                    </ul>
+                    <span class="product-new-label">Sale</span>
+              
+                </div>
+                <ul class="rating">
+                    <li class="fa fa-star"></li>
+                    <li class="fa fa-star"></li>
+                    <li class="fa fa-star"></li>
+                    <li class="fa fa-star"></li>
+                    <li class="fa fa-star disable"></li>
+                </ul>
+                <div class="product-content">
+                    <h3 class="title"><a th:href="@{'/product/' + ${product.id}}" th:text="${product.name}"></a></h3>
+                    <div class="price">
+                    <span th:text="${product.priceFirst}"></span>
+                      <p th:text="${product.price}"></p>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+<hr>
+
+
+       
+<hr>
+
+<hr>
+</body>
+</html>
