@@ -13,5 +13,9 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 
 	List<Product> findByProductTop(boolean b);
     // Các phương thức tùy chỉnh cho truy vấn sản phẩm (nếu cần)
+
+	List<Product> findByProductTopAndNameContaining(boolean b, String searchTerm);
+
+	List<Product> findByNameContaining(String searchTerm);
 	
 }
