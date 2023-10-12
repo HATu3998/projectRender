@@ -1,11 +1,16 @@
 # Use the Maven image for building the application
 FROM maven:3.8.5-openjdk-17 AS build
 
-# Copy the entire project to the container
-COPY . .
+# Create a working directory in the container
+WORKDIR /app
+
+# Copy only the necessary files for building
+COPY pom.xml .
+COPY src ./src
 
 # Build the application
 RUN mvn clean package -DskipTests
+
 
 
 # Use a lightweight JRE-based image for the runtime
