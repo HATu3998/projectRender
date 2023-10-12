@@ -1,26 +1,8 @@
-# Use the Maven image for building the application
-FROM maven:3.8.5-openjdk-17 AS build
-
-# Create a working directory in the container
-WORKDIR /app
-
-# Copy only the necessary files for building
-COPY pom.xml .
-COPY src ./src
-
-# Build the application
+FROM maven:3.8.5-openjdk-17 AS build 
+COPY . .
 RUN mvn clean package -DskipTests
 
-
-
-# Use a lightweight JRE-based image for the runtime
 FROM openjdk:17.0.1-jdk-slim
-
-# Copy the JAR file from the build stage to the runtime stage
-COPY --from=build /target/RenderProject-0.0.1-SNAPSHOT.jar app.jar
-
-# Expose the port
+COPY --from=build /target/RenderProject-0.0.1-SNAPSHOT.jar demo.jar
 EXPOSE 8080
-
-# Set the entry point
-ENTRYPOINT ["java", "-jar", "app.jar"]
+ENTRYPOINT ["java","-jar","demo.jar"]
